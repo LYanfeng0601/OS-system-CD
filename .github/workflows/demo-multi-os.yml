@@ -1,0 +1,22 @@
+name: 多系统试运行
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: 在 ${{ matrix.os }} 上测试
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+
+      - name: 显示系统信息
+        run: |
+          echo "当前系统: ${{ matrix.os }}"
+          uname -a 2>/dev/null || ver 2>/dev/null || echo "macOS"
