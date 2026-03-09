@@ -1,4 +1,4 @@
-name: 多系统试运行
+name: UOS操作系统CD测试
 on:
   push:
     branches: [ main ]
@@ -10,7 +10,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
+        os: [uos-professional-V20-1070,uos-professional-V25-2500u1]
     runs-on: ${{ matrix.os }}
     steps:
       - name: 检出代码
